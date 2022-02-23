@@ -1,4 +1,3 @@
-const creds = require('./creds');
 const Discord = require('discord.js');
 const fs = require('fs');
 
@@ -57,4 +56,4 @@ client.on("messageCreate", message =>
 }
 );
 
-client.login(creds.token);
+client.login('TOKEN');
