@@ -56,4 +56,4 @@ client.on("messageCreate", message =>
 }
 );
 
-client.login('TOKEN');
+client.login('TOKENsdz');
