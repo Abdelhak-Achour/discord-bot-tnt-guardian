@@ -1,6 +1,7 @@
 const creds = require('./creds');
 const Discord = require('discord.js');
 const fs = require('fs');
+const { channel } = require('diagnostics_channel');
 
 const myIntents = new Discord.Intents();
 myIntents.add(
@@ -33,8 +34,18 @@ client.once('ready', () =>
 client.on("messageCreate", message =>
 {
 
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
-    const [command, ...args] = message.content.trim().substring(prefix.length).split(/\s+/);
+    if(message.author.bot) return;
+    msg = message.content.toLowerCase();
+    if (msg === "never gonna")
+    {
+        message.channel.send("give you up");
+    }
+    else if (msg === "i need tnt")
+    {
+        message.channel.send("here take some");
+    }
+    if(!msg.startsWith(prefix)) return;
+    const [command, ...args] = msg.trim().substring(prefix.length).split(/\s+/);
     if (!client.commands.has(command)) return message.reply("I have no such command.");
     if(command === 'ping')
     {
