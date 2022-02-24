@@ -32,8 +32,10 @@ client.once('ready', () =>
 
 client.on("messageCreate", message =>
 {
+
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     const [command, ...args] = message.content.trim().substring(prefix.length).split(/\s+/);
+    if (!client.commands.has(command)) return message.reply("I have no such command.");
     if(command === 'ping')
     {
         client.commands.get(command).execute(message, args);
