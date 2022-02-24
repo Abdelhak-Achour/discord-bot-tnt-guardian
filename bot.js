@@ -71,6 +71,10 @@ client.on("messageCreate", message =>
     {
         client.commands.get(command).execute(message, args);
     }
+    else if (command === 'rules')
+    {
+        client.commands.get(command).execute(message, Discord);
+    }
 }
 );
 
