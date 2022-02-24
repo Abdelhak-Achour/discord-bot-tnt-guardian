@@ -9,7 +9,22 @@ module.exports =
         const member = message.guild.members.cache.get(args[0].substring(3, args[0].length - 1)); // this is used to get the user as a GuildMember object
         const username = member.user.username;
         const discriminator = member.user.discriminator;
-        message.guild.members.ban(args[0].substring(3, args[0].length - 1));
-        message.reply(`${username}#${discriminator} was banned.`);
+        if(member)
+        {
+            try
+            {
+                message.guild.members.ban(args[0].substring(3, args[0].length - 1));
+                message.reply(`${username}#${discriminator} was banned.`);
+            }
+            catch (error)
+            {
+                console.log(error);
+                message.reply(`${username}#${discriminator} was not banned.\nmaybe you can't ban that user.`);
+            }
+        }
+        else
+        {
+            message.reply("Couldn't find the mentioned user.");
+        }
     }
 }
