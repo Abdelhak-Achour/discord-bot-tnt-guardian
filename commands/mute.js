@@ -13,7 +13,7 @@ module.exports =
         const tid = target.id; // id of the target user to mute
         let member = message.guild.members.cache.get(tid); // getting the target user as a member object
         const mutedID = message.guild.roles.cache.find(role => role.name === 'muted').id; // get the muted role id ... it won't work if the muted role doesn't exist in the server
-        let memberRolesIDsList = [];
+        let memberRolesIDsList = []; // will contain member roles that will get restored after timeout
         for (let x = 0;x<member.roles.cache.size-1;x++)
         {
             memberRolesIDsList.push(member.roles.cache.at(x).id);
