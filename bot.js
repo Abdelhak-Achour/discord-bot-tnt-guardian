@@ -1,7 +1,6 @@
 const creds = require('./creds');
 const Discord = require('discord.js');
 const fs = require('fs');
-const { channel } = require('diagnostics_channel');
 
 const myIntents = new Discord.Intents();
 myIntents.add(
@@ -74,6 +73,10 @@ client.on("messageCreate", message =>
     else if (command === 'rules')
     {
         client.commands.get(command).execute(message, Discord);
+    }
+    else if (command === 'clear')
+    {
+        client.commands.get(command).execute(message, args);
     }
 }
 );

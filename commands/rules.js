@@ -8,8 +8,7 @@ module.exports =
         .setColor('#D82148')
         .setTitle('Rules')
         .addFields(
-            {name: 'Rule 1:', value: 'Be nice ... <#801455167056510976>'},
-            {name: 'Rule 2:', value: 'a3mel 3a9lek'}
+            {name: 'All rules in:', value: '<#943600351561531542>'}
         )
         message.channel.send({embeds: [newEmbed]});
     }
