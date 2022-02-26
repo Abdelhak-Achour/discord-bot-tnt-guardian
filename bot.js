@@ -30,6 +30,13 @@ client.once('ready', () =>
 }
 );
 
+client.on('guildMemberAdd', guildMember =>
+{
+    const memberRoleID = guildMember.guild.roles.cache.find(role => role.name === 'TNT lovers').id;
+    guildMember.roles.add(memberRoleID);
+    guildMember.guild.channels.cache.get('801455167056510976').send(`<@${guildMember.user.id}> joined and given role.`);
+});
+
 client.on("messageCreate", message =>
 {
 
