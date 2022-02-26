@@ -51,6 +51,12 @@ client.on('guildMemberAdd', guildMember =>
     }
 });
 
+client.on('guildMemberRemove', guildMember =>
+{
+    if (guildMember.user.bot) return;
+    guildMember.guild.channels.cache.get('943934793907843102').send(`૮₍ ˃ ⤙ ˂ ₎ა\n./づ︻┻┳══━一             **${guildMember.user.tag}** left the server.`);
+});
+
 client.on("messageCreate", message =>
 {
 
