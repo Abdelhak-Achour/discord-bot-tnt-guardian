@@ -14,6 +14,8 @@ const client = new Discord.Client({intents: myIntents});
 
 const prefix = 'tnt ';
 
+let automod = false;
+
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -62,6 +64,12 @@ client.on("messageCreate", message =>
     let warn = false;
     if(message.author.bot) return;
     msg = message.content.toLowerCase();
+    if ((message.author.id === '474269529543934003' || message.author.id === '569224361265856552' || message.author.id === '816409290217750538') && msg === 'turn automod on/off')
+    {
+        automod = !automod;
+        message.reply('automod turned on');
+        return;
+    }
     if (msg === "never gonna")
     {
         message.channel.send("give you up");
@@ -72,7 +80,7 @@ client.on("messageCreate", message =>
         message.channel.send("here take some");
         return;
     }
-    else if (!msg.startsWith(prefix))
+    else if (!msg.startsWith(prefix) && automod) // add code here to make it ignore some trusted users and on/off check
     {
         // detection code
         fs.readFile('nsfw.json', (error, data) =>
@@ -83,12 +91,67 @@ client.on("messageCreate", message =>
                 if (msg.includes(word))
                 {
                     warn = true;
+                    console.log(warn);
                     break;
                 }
             }
-        })
-        // type code here to increment number of warns to a user if warn === true ... save data in a json
+        });
         // action code
+        if (warn)
+        {
+            console.log("first");
+            let memberRolesIDsList = [];
+            let timer = "0s";
+            fs.readFile('warns.json', (error, data) =>
+            {
+                let warns = JSON.parse(data);
+                if (message.author.id in warns.id)
+                {
+                    warns.id[message.author.id]++;
+                    if (warns.id[message.author.id] >= 2 && warns.id[message.author.id] < 7)
+                    {
+                        message.delete().then(message.channel.send(`${message.member} warned and muted.`)).catch();
+                        const mutedID = message.guild.roles.cache.find(role => role.name === 'muted').id;
+                        for (let x = 0;x<message.member.roles.cache.size-1;x++)
+                        {
+                            memberRolesIDsList.push(message.member.roles.cache.at(x).id);
+                        }
+                        for (let y = 0;y<message.member.roles.cache.size-1;y++)
+                        {
+                            message.member.roles.remove(message.member.roles.cache.at(y).id);
+                        }
+                        message.member.roles.add(mutedID);
+                        fs.writeFile("warns.json", JSON.stringify(warns));
+                        const timers = ["5m", "30m", "3h", "24h", "7d"];
+                        timer = timers[warns.id[message.author.id]-2];
+                    }
+                    else if (warns.id[message.author.id] >= 7)
+                    {
+                        message.delete().then(message.guild.members.ban(message.author.id)).catch();
+                        warns.id[message.author.id] = 0;
+                        fs.writeFile("warns.json", JSON.stringify(warns));
+                    }
+                }
+                else
+                {
+                    warns.id[message.author.id] = 1;
+                    message.delete().then(message.channel.send(`${message.member} warned.`)).catch();
+                    fs.writeFile("warns.json", JSON.stringify(warns));
+                }
+            });
+            if (!(timer === "0s"))
+            {
+                setTimeout(function()
+                {
+                    message.member.roles.remove(mutedID);
+                    for (let z = 0;z<memberRolesIDsList.length;z++)
+                    {
+                        message.member.roles.add(memberRolesIDsList[z]);
+                    }
+                }, ms(timer)
+                );
+            }
+        }
         return;
     }
     if(!msg.startsWith(prefix)) return;
