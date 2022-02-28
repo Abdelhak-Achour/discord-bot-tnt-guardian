@@ -14,7 +14,7 @@ const client = new Discord.Client({intents: myIntents});
 
 const prefix = 'tnt ';
 
-let automod = false;
+let automod = true;
 
 client.commands = new Discord.Collection();
 
@@ -80,12 +80,17 @@ client.on("messageCreate", message =>
         message.channel.send("here take some");
         return;
     }
-    else if (!msg.startsWith(prefix) && automod) // add code here to make it ignore some trusted users and on/off check
+    else if (!msg.startsWith(prefix) && automod) // add code here to make it ignore some trusted users
     {
         // detection code
-        fs.readFile('nsfw.json', (error, data) =>
+        fs.readFileSync('nsfw.json', (error, data) =>
         {
             let nsfw = JSON.parse(data);
+            
+        });
+        try
+        {
+            let nsfw = JSON.parse(fs.readFileSync('nsfw.json'));
             for (let word of nsfw.notAllowedWords)
             {
                 if (msg.includes(word))
@@ -95,7 +100,12 @@ client.on("messageCreate", message =>
                     break;
                 }
             }
-        });
+        }
+        catch
+        {
+            console.log("error reading file.");
+        }
+        console.log(warn);
         // action code
         if (warn)
         {
@@ -105,11 +115,14 @@ client.on("messageCreate", message =>
             fs.readFile('warns.json', (error, data) =>
             {
                 let warns = JSON.parse(data);
+                console.log("reading warns");
                 if (message.author.id in warns.id)
                 {
+                    console.log("already existing id");
                     warns.id[message.author.id]++;
                     if (warns.id[message.author.id] >= 2 && warns.id[message.author.id] < 7)
                     {
+                        console.log("muting");
                         message.delete().then(message.channel.send(`${message.member} warned and muted.`)).catch();
                         const mutedID = message.guild.roles.cache.find(role => role.name === 'muted').id;
                         for (let x = 0;x<message.member.roles.cache.size-1;x++)
@@ -121,26 +134,30 @@ client.on("messageCreate", message =>
                             message.member.roles.remove(message.member.roles.cache.at(y).id);
                         }
                         message.member.roles.add(mutedID);
-                        fs.writeFile("warns.json", JSON.stringify(warns));
+                        fs.writeFile("warns.json", JSON.stringify(warns), function(error, result){if (error){console.log(error);}});
                         const timers = ["5m", "30m", "3h", "24h", "7d"];
                         timer = timers[warns.id[message.author.id]-2];
+                        console.log("timer set");
                     }
                     else if (warns.id[message.author.id] >= 7)
                     {
+                        console.log(banning);
                         message.delete().then(message.guild.members.ban(message.author.id)).catch();
                         warns.id[message.author.id] = 0;
-                        fs.writeFile("warns.json", JSON.stringify(warns));
+                        fs.writeFile("warns.json", JSON.stringify(warns), function(error, result){if (error){console.log(error);}});
                     }
                 }
                 else
                 {
+                    console.log("not already existing id");
                     warns.id[message.author.id] = 1;
                     message.delete().then(message.channel.send(`${message.member} warned.`)).catch();
-                    fs.writeFile("warns.json", JSON.stringify(warns));
+                    fs.writeFile("warns.json", JSON.stringify(warns), function(error, result){if (error){console.log(error);}});
                 }
             });
             if (!(timer === "0s"))
             {
+                console.log("starting timeout");
                 setTimeout(function()
                 {
                     message.member.roles.remove(mutedID);
