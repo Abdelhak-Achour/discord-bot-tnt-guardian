@@ -74,17 +74,21 @@ client.on("messageCreate", message =>
     }
     else if (!msg.startsWith(prefix))
     {
+        // detection code
         fs.readFile('nsfw.json', (error, data) =>
         {
             let nsfw = JSON.parse(data);
-            if (nsfw.notAllowedWords.includes(msg))
+            for (let word of nsfw.notAllowedWords)
             {
-                warn = true;
-                console.log("detected nsfw msg");
-                console.log(warn);
+                if (msg.includes(word))
+                {
+                    warn = true;
+                    break;
+                }
             }
         })
         // type code here to increment number of warns to a user if warn === true ... save data in a json
+        // action code
         return;
     }
     if(!msg.startsWith(prefix)) return;
