@@ -19,7 +19,7 @@ client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandFiles)
 {
-    const command = require(`./commands/${file}`); //alt+96 for backquote
+    const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
 
@@ -59,16 +59,33 @@ client.on('guildMemberRemove', guildMember =>
 
 client.on("messageCreate", message =>
 {
-
+    let warn = false;
     if(message.author.bot) return;
     msg = message.content.toLowerCase();
     if (msg === "never gonna")
     {
         message.channel.send("give you up");
+        return;
     }
     else if (msg === "i need tnt")
     {
         message.channel.send("here take some");
+        return;
+    }
+    else if (!msg.startsWith(prefix))
+    {
+        fs.readFile('nsfw.json', (error, data) =>
+        {
+            let nsfw = JSON.parse(data);
+            if (nsfw.notAllowedWords.includes(msg))
+            {
+                warn = true;
+                console.log("detected nsfw msg");
+                console.log(warn);
+            }
+        })
+        // type code here to increment number of warns to a user if warn === true ... save data in a json
+        return;
     }
     if(!msg.startsWith(prefix)) return;
     const [command, ...args] = msg.trim().substring(prefix.length).split(/\s+/);
