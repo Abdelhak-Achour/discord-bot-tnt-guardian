@@ -71,21 +71,21 @@ client.on("messageCreate", message =>
         message.channel.send("here take some");
         return;
     }
-    else if (!msg.startsWith(prefix))
-    {
-        fs.readFile('nsfw.json', (error, data) =>
-        {
-            let nsfw = JSON.parse(data);
-            if (nsfw.notAllowedWords.includes(msg))
-            {
-                warn = true;
-                console.log("detected nsfw msg");
-                console.log(warn);
-            }
-        })
+  //  else if (!msg.startsWith(prefix))
+   // {
+    //    fs.readFile('nsfw.json', (error, data) =>
+     //   {
+     //       let nsfw = JSON.parse(data);
+     //       if (nsfw.notAllowedWords.includes(msg))
+      //      {
+          //      warn = true;
+             //   console.log("detected nsfw msg");
+            //   console.log(warn);
+           // }
+        //})
         // type code here to increment number of warns to a user if warn === true ... save data in a json
-        return;
-    }
+       // return;
+    //}
     if(!msg.startsWith(prefix)) return;
     const [command, ...args] = msg.trim().substring(prefix.length).split(/\s+/);
     if (!client.commands.has(command)) return message.reply("I have no such command.");
