@@ -141,7 +141,7 @@ client.on("messageCreate", message =>
                     }
                     else if (warns.id[message.author.id] >= 7)
                     {
-                        console.log(banning);
+                        console.log("banning");
                         message.delete().then(message.guild.members.ban(message.author.id)).catch();
                         warns.id[message.author.id] = 0;
                         fs.writeFile("warns.json", JSON.stringify(warns), function(error, result){if (error){console.log(error);}});
@@ -153,7 +153,7 @@ client.on("messageCreate", message =>
                     warns.id[message.author.id] = 1;
                     message.delete().then(message.channel.send(`${message.member} warned.`)).catch();
                     fs.writeFile("warns.json", JSON.stringify(warns), function(error, result){if (error){console.log(error);}});
-                }
+                } // test it on other users cuz it can't mute u
             });
             if (!(timer === "0s"))
             {
