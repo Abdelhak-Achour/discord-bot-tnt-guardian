@@ -4,6 +4,7 @@ A simple discord bot for that helps you manage a discord server
 
 * [Requirements](#requirements)
 * [Scopes](#scopes)
+* [Installation](#installation)
 * [License](#license)
 
 ## Requirements
