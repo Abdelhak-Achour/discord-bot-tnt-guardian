@@ -3,8 +3,8 @@ A simple discord bot for that helps you manage a discord server
 ## Contents
 
 * [Requirements](#requirements)
-* [License](#license)
 * [Scopes](#scopes)
+* [License](#license)
 
 ## Requirements
 
