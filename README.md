@@ -15,6 +15,19 @@ A simple discord bot for that helps you manage a discord server
 
 The `applications.commands` scope needs to be enabled in addition to the `bot` scope, go to `OAuth2 URL generator` on the [developer portal](https://discord.com/developers/applications/) to enable it.
 
+## Installation
+
+```bash
+# Clone the repository
+git clone https://https://github.com/Abdelhak-Achour/discord-bot-tnt-guardian.git
+
+# Enter into the directory
+cd discord-bot-tnt-guardian
+
+# Install the dependencies
+npm install discord.js
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
