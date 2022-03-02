@@ -12,7 +12,7 @@ A simple discord bot for that helps you manage a discord server
 
 ## Required permissions
 
-The `applications.commands` application scope needs to be enabled, go to `OAuth2` tap on the [developer portal](https://discord.com/developers/applications/) to enable it
+The `applications.commands` application scope needs to be enabled, go to `OAuth2 URL generator` on the [developer portal](https://discord.com/developers/applications/) to enable it
 
 ## License
 
