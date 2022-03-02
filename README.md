@@ -26,6 +26,9 @@ cd discord-bot-tnt-guardian
 
 # Install the dependencies
 npm install discord.js
+
+# Running the code
+node bot.js // or use: node .
 ```
 
 ## License
