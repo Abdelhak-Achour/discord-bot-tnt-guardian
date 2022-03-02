@@ -4,7 +4,7 @@ A simple discord bot for that helps you manage a discord server
 
 * [Requirements](#requirements)
 * [Scopes](#scopes)
-* [Commands to run](#commands to run)
+* [Commands](#commands)
 * [License](#license)
 
 ## Requirements
@@ -16,7 +16,7 @@ A simple discord bot for that helps you manage a discord server
 
 The `applications.commands` scope needs to be enabled in addition to the `bot` scope, go to `OAuth2 URL generator` on the [developer portal](https://discord.com/developers/applications/) to enable it.
 
-## Commands to run
+## Commands
 
 ```bash
 # Clone the repository
