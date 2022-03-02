@@ -10,9 +10,9 @@ A simple discord bot for that helps you manage a discord server
 - [Node](https://nodejs.org/en/) - Version 16 or higher
 - [NPM](https://www.npmjs.com/)
 
-## Required permissions
+## Scopes
 
-The `applications.commands` application scope needs to be enabled, go to `OAuth2 URL generator` on the [developer portal](https://discord.com/developers/applications/) to enable it
+The `applications.commands` application scope needs to be enabled, go to `OAuth2 URL generator` on the [developer portal](https://discord.com/developers/applications/) to enable it.
 
 ## License
 
