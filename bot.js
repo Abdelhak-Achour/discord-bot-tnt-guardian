@@ -1,15 +1,29 @@
 const creds = require('./creds');
 const Discord = require('discord.js');
 const fs = require('fs');
+const snoots = require('snoots');
 
 const myIntents = new Discord.Intents();
-myIntents.add(
+myIntents.add
+(
     Discord.Intents.FLAGS.GUILD_MEMBERS,
     Discord.Intents.FLAGS.GUILD_MESSAGES,
     Discord.Intents.FLAGS.GUILDS
-    );
+);
 
 const client = new Discord.Client({intents: myIntents});
+
+const rclient = new snoots.Client
+(
+    {
+        userAgent: creds.redditUserAgent,
+        creds:
+        {
+            clientId: creds.redditClientID,
+            clientSecret: creds.redditClientSecret
+        }
+    }
+);
 
 
 const prefix = 'tnt ';
