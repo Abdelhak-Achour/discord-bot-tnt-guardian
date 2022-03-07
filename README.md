@@ -1,5 +1,5 @@
 # The_TNT_Guardian Discord Bot
-A simple discord bot that helps you manage a discord server
+An under-development, simple discord bot that helps you manage a discord server
 ## Contents
 
 * [Requirements](#requirements)
