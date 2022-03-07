@@ -83,60 +83,6 @@ client.on("messageCreate", message =>
 {
     try
     {
-<<<<<<< HEAD
-        message.channel.send("here take some");
-        return;
-    }
-    // else if (!msg.startsWith(prefix))
-    // {
-    //     fs.readFile('nsfw.json', (error, data) =>
-    //     {
-    //         let nsfw = JSON.parse(data);
-    //         if (nsfw.notAllowedWords.includes(msg))
-    //         {
-    //             warn = true;
-    //             console.log("detected nsfw msg");
-    //             console.log(warn);
-    //         }
-    //         })
-    //         //type code here to increment number of warns to a user if warn === true ... save data in a json
-    //     return;
-    //     }
-    if(!msg.startsWith(prefix)) return;
-    const [command, ...args] = msg.trim().substring(prefix.length).split(/\s+/);
-    if (!client.commands.has(command)) return message.reply("I have no such command.");
-    if(command === 'ping')
-    {
-        client.commands.get(command).execute(message, args);
-    }
-    else if (command === 'youtube')
-    {
-        client.commands.get(command).execute(message);
-    }
-    else if (command === 'nimo')
-    {
-        client.commands.get(command).execute(message);
-    }
-    else if (command === 'echo')
-    {
-        client.commands.get(command).execute(message, args);
-    }
-    else if (command === 'kick')
-    {
-        client.commands.get(command).execute(message, args);
-    }
-    else if (command === 'ban')
-    {
-        client.commands.get(command).execute(message, args);
-    }
-    else if (command === 'rules')
-    {
-        client.commands.get(command).execute(message, Discord);
-    }
-    else if (command === 'clear')
-    {
-        client.commands.get(command).execute(message, args);
-=======
         let warn = false;
         if(message.author.bot) return;
         msg = message.content.toLowerCase();
@@ -280,7 +226,6 @@ client.on("messageCreate", message =>
         {
             client.commands.get(command).execute(message, rclient, args);
         }
->>>>>>> devbranch
     }
     catch (error)
     {
@@ -289,8 +234,4 @@ client.on("messageCreate", message =>
 }
 );
 
-<<<<<<< HEAD
-client.login('TOKEN');
-=======
 client.login(process.env.TTG_BOT_TOKEN);
->>>>>>> devbranch
