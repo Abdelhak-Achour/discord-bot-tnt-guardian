@@ -6,5 +6,7 @@ module.exports =
     {
         message.reply(args.join(' '));
         console.log(args);
+        console.log(message.author.id);
+        console.log(typeof message.author.id);
     }
 }
