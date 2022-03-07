@@ -1,7 +1,7 @@
-const creds = require('./creds');
 const Discord = require('discord.js');
 const fs = require('fs');
 const snoots = require('snoots');
+require('dotenv').config();
 
 const myIntents = new Discord.Intents();
 myIntents.add
@@ -16,15 +16,14 @@ const client = new Discord.Client({intents: myIntents});
 const rclient = new snoots.Client
 (
     {
-        userAgent: creds.redditUserAgent,
+        userAgent: process.env.TTG_REDDIT_USERAGENT,
         creds:
         {
-            clientId: creds.redditClientID,
-            clientSecret: creds.redditClientSecret
-        }
+            clientId: process.env.TTG_REDDIT_CLIENT_ID,
+            clientSecret: process.env.TTG_REDDIT_CLIENT_SECRET,
+        },
     }
 );
-
 
 const prefix = 'tnt ';
 
@@ -87,7 +86,7 @@ client.on("messageCreate", message =>
         let warn = false;
         if(message.author.bot) return;
         msg = message.content.toLowerCase();
-        if ((message.author.id === '474269529543934003' || message.author.id === '569224361265856552' || message.author.id === '816409290217750538') && msg === 'turn automod on/off')
+        if ((message.author.id === process.env.KYOMA_DISCORD_ID || message.author.id === process.env.HASHIRA_DISCORD_ID || message.author.id === process.env.MR_DEVIL_TNT_DISCORD_ID) && msg === 'turn automod on/off')
         {
             automod = !automod;
             message.reply('automod turned on');
@@ -103,7 +102,7 @@ client.on("messageCreate", message =>
             message.channel.send("here take some");
             return;
         }
-        else if (!msg.startsWith(prefix) && automod && (message.author.id === '474269529543934003' || message.author.id === '816409290217750538' || message.author.id === '569224361265856552'))
+        else if (!msg.startsWith(prefix) && automod && (message.author.id === process.env.KYOMA_DISCORD_ID || message.author.id === process.env.MR_DEVIL_TNT_DISCORD_ID || message.author.id === process.env.HASHIRA_DISCORD_ID))
         {
             // detection code
             fs.readFileSync('nsfw.json', (error, data) =>
@@ -223,6 +222,10 @@ client.on("messageCreate", message =>
         {
             client.commands.get(command).execute(message, args);
         }
+        else if (command === 'meme')
+        {
+            client.commands.get(command).execute(message, rclient, args);
+        }
     }
     catch (error)
     {
@@ -231,4 +234,4 @@ client.on("messageCreate", message =>
 }
 );
 
-client.login(creds.token);
+client.login(process.env.TTG_BOT_TOKEN);
