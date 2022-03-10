@@ -1,10 +1,10 @@
 module.exports =
 {
-    name: 'meme',
+    name: 'animeme',
     description: 'tnt meme gets a random meme from a random meme subreddit in reddit',
     async execute(message, rclient, Discord)
     {
-        const memes_subreddits_list = ["memes", "meme"];
+        const memes_subreddits_list = ["animememes", "Animemes"];
         const post = await rclient.subreddits.getRandomPost(memes_subreddits_list[Math.floor(Math.random()*memes_subreddits_list.length)]);
         do
         {

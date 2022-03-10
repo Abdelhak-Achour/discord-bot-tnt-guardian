@@ -224,7 +224,11 @@ client.on("messageCreate", message =>
         }
         else if (command === 'meme')
         {
-            client.commands.get(command).execute(message, rclient, Discord, args);
+            client.commands.get(command).execute(message, rclient, Discord);
+        }
+        else if (command === 'animeme')
+        {
+            client.commands.get(command).execute(message, rclient, Discord);
         }
     }
     catch (error)
