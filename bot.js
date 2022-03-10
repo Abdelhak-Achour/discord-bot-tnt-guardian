@@ -224,7 +224,7 @@ client.on("messageCreate", message =>
         }
         else if (command === 'meme')
         {
-            client.commands.get(command).execute(message, rclient, args);
+            client.commands.get(command).execute(message, rclient, Discord, args);
         }
     }
     catch (error)
