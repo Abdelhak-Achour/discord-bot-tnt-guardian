@@ -1,10 +1,10 @@
 module.exports =
 {
-    name: 'ras',
-    description: 'tnt ras gets a random anime or manga screenshot from random_anime_screenshot subreddit in reddit',
+    name: 'rag',
+    description: 'tnt rag gets a random anime or manga gif from a random anime gif subreddit in reddit',
     async execute(message, rclient, Discord)
     {
-        const subreddits_list = ["animenocontext", "animescreenshots"];
+        const subreddits_list = ["animegif", "animegifs"];
         let post = await rclient.subreddits.getRandomPost(subreddits_list[Math.floor(Math.random()*subreddits_list.length)]);
         do
         {
