@@ -5,10 +5,10 @@ module.exports =
     async execute(message, rclient, Discord)
     {
         const animemes_subreddits_list = ["animememes", "Animemes"];
-        let post = await rclient.subreddits.getRandomPost(memes_subreddits_list[Math.floor(Math.random()*animemes_subreddits_list.length)]);
+        let post = await rclient.subreddits.getRandomPost(animemes_subreddits_list[Math.floor(Math.random()*animemes_subreddits_list.length)]);
         do
         {
-            post = await rclient.subreddits.getRandomPost(memes_subreddits_list[Math.floor(Math.random()*animemes_subreddits_list.length)]);
+            post = await rclient.subreddits.getRandomPost(animemes_subreddits_list[Math.floor(Math.random()*animemes_subreddits_list.length)]);
         }while ((!(post.url.endsWith(".gif"))) && (!(post.url.endsWith(".jpg"))) && (!(post.url.endsWith(".png"))) && (!(post.url.endsWith(".jpeg")) && (!(post.over18))))
         const newEmbed = new Discord.MessageEmbed()
         .setColor("#F76E11")
