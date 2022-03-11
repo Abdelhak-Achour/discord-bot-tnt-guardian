@@ -230,6 +230,14 @@ client.on("messageCreate", message =>
         {
             client.commands.get(command).execute(message, rclient, Discord);
         }
+        else if (command === 'animeirl')
+        {
+            client.commands.get(command).execute(message, rclient, Discord);
+        }
+        else if (command === 'ras')
+        {
+            client.commands.get(command).execute(message, rclient, Discord);
+        }
     }
     catch (error)
     {
