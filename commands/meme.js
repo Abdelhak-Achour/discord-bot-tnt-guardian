@@ -1,6 +1,7 @@
 module.exports =
 {
     name: 'meme',
+    aliases: ['m'],
     description: 'tnt meme gets a random meme from a random meme subreddit in reddit',
     async execute(message, rclient, Discord)
     {

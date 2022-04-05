@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const snoots = require('snoots');
+const animeirl = require('./commands/animeirl');
 require('dotenv').config();
 
 const myIntents = new Discord.Intents();
@@ -36,6 +37,13 @@ for(const file of commandFiles)
 {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
+    if (command.aliases)
+    {
+        for(let i=0;i<command.aliases.length;i++)
+        {
+            client.commands.set(command.aliases[i], command);
+        }
+    }
 }
 
 client.once('ready', () =>
@@ -222,15 +230,15 @@ client.on("messageCreate", message =>
         {
             client.commands.get(command).execute(message, args);
         }
-        else if (command === 'meme')
+        else if (command === 'meme' || command === 'm')
         {
             client.commands.get(command).execute(message, rclient, Discord);
         }
-        else if (command === 'animeme')
+        else if (command === 'animeme' || command === 'animememe' || command === 'am')
         {
             client.commands.get(command).execute(message, rclient, Discord);
         }
-        else if (command === 'animeirl')
+        else if (command === 'animeirl' || command === 'anime_irl' || command === 'airl' || command === 'a_irl')
         {
             client.commands.get(command).execute(message, rclient, Discord);
         }
