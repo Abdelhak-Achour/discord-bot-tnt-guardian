@@ -1,7 +1,6 @@
 module.exports =
 {
     name: 'animeirl',
-    aliases: ['anime_irl', 'airl', 'a_irl'],
     description: 'tnt animeirl gets a random post from anime_irl subreddit in reddit',
     async execute(message, rclient, Discord)
     {

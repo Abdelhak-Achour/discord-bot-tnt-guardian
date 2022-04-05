@@ -230,7 +230,7 @@ client.on("messageCreate", message =>
         {
             client.commands.get(command).execute(message, rclient, Discord);
         }
-        else if (command === 'animeirl' || command === 'anime_irl' || command === 'airl' || command === 'a_irl')
+        else if (command === 'animeirl')
         {
             client.commands.get(command).execute(message, rclient, Discord);
         }
