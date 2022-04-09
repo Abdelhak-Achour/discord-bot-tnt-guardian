@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const snoots = require('snoots');
-const animeirl = require('./commands/animeirl');
 require('dotenv').config();
 
 const myIntents = new Discord.Intents();
@@ -249,6 +248,14 @@ client.on("messageCreate", message =>
         else if (command === 'rag')
         {
             client.commands.get(command).execute(message, rclient, Discord);
+        }
+        else if (command === 'anime' || command === 'a')
+        {
+            client.commands.get(command).execute(message, args);
+        }
+        else if (command === 'manga' || command === 'm')
+        {
+            client.commands.get(command).execute(message, args);
         }
     }
     catch (error)
