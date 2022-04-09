@@ -253,6 +253,10 @@ client.on("messageCreate", message =>
         {
             client.commands.get(command).execute(message, args);
         }
+        else if (command === 'manga' || command === 'm')
+        {
+            client.commands.get(command).execute(message, args);
+        }
     }
     catch (error)
     {

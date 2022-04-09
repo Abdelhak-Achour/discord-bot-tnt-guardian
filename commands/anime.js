@@ -25,7 +25,7 @@ module.exports =
         }
         if (genres.includes('Hentai'))
         {
-            message.reply("if i got the right ... i think it's a hentai which i can't help you with : )");
+            message.reply("if i got the right anime ... i think it's a hentai which i can't help you with : )");
             return;
         }
         let english_title = '';
