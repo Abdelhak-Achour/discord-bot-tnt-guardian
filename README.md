@@ -20,7 +20,7 @@ The `applications.commands` scope needs to be enabled in addition to the `bot` s
 
 ```bash
 # Clone the repository
-git clone https://https://github.com/Abdelhak-Achour/discord-bot-tnt-guardian.git
+git clone https://github.com/Abdelhak-Achour/discord-bot-tnt-guardian.git
 
 # Enter into the directory
 cd discord-bot-tnt-guardian
