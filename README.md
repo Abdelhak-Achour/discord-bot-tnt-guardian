@@ -29,6 +29,9 @@ cd discord-bot-tnt-guardian
 npm install discord.js
 npm install snoowrap
 npm install snoots
+npm install jikan-node
+npm install ms
+npm install dotenv
 
 # Running the code
 node bot.js // or use: node .
